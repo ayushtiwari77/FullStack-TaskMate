@@ -12,7 +12,7 @@ export async function register(req, res, next) {
   try {
     const { name, email, password } = req.body;
 
-    let user = await userModel.findOne({ email: email });
+    let user = await userModel.find({ email: email });
 
     if (user) {
       return res.status(409).json({
@@ -91,11 +91,12 @@ export async function login(req, res, next) {
 
 //logout functionality
 export function logout(req, res) {
-  res.cookie("token", "", {
-    expires: new Date(Date.now()),
-    sameSite: "none",
-    secure: true,
-  });
+  // res.cookie("token", "", {
+  //   expires: new Date(Date.now()),
+  //   sameSite: "none",
+  //   secure: true,
+  // });
+  res.clearCookie("token");
 
   res.status(200).json({
     success: true,
