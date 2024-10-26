@@ -91,12 +91,11 @@ export async function login(req, res, next) {
 
 //logout functionality
 export function logout(req, res) {
-  // res.cookie("token", "", {
-  //   expires: new Date(Date.now()),
-  //   sameSite: "none",
-  //   secure: true,
-  // });
-  res.clearCookie("token");
+  res.cookie("token", "", {
+    maxAge: -1,
+    sameSite: "none",
+    secure: true,
+  });
 
   res.status(200).json({
     success: true,
