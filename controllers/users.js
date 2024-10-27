@@ -12,7 +12,7 @@ export async function register(req, res, next) {
   try {
     const { name, email, password } = req.body;
 
-    let user = await userModel.find({ email: email });
+    let user = await userModel.findOne({ email });
 
     if (user) {
       return res.status(409).json({
